@@ -15,6 +15,11 @@ class ShunController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function users()
+    {
+        return view('userdetails');
+    }
     public function index()
     {
         $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/qr-scanner-ee644-0ff51ab53c39.json');
@@ -24,7 +29,7 @@ class ShunController extends Controller
         ->create();
         $database = $firebase->getDatabase();
         $newPost = $database
-        ->getReference('data');
+        ->getReference('data/shun');
         // ->push([
         // 'title' => 'Post title',
         // 'body' => 'This should probably be longer.'
@@ -35,8 +40,9 @@ class ShunController extends Controller
         //$newPost->getChild('title')->set('Changed post title');
         //$newPost->getValue(); // Fetches the data from the realtime database
         //$newPost->remove();
-        echo"<pre>";
-        print_r($newPost->getvalue());
+        // echo"<pre>";
+        $data = $newPost->getvalue();
+        return view('welcome',compact('data'));
 
     }
 

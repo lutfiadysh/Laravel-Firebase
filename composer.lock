@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e7df64f5b085403593717b15525da9e",
+    "content-hash": "770a78f516386db9c28f1797e2013f49",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1311,6 +1311,49 @@
                 "google-cloud-platform"
             ],
             "time": "2018-07-28T13:57:51+00:00"
+        },
+        {
+            "name": "laravel-frontend-presets/argon",
+            "version": "1.0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-frontend-presets/argon.git",
+                "reference": "ff48f7561ef3d58ae702ed08c72eaa4fedbe99cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-frontend-presets/argon/zipball/ff48f7561ef3d58ae702ed08c72eaa4fedbe99cd",
+                "reference": "ff48f7561ef3d58ae702ed08c72eaa4fedbe99cd",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^5.5 || ^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LaravelFrontendPresets\\ArgonPreset\\ArgonPresetServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LaravelFrontendPresets\\ArgonPreset\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel 5.x Front-end preset for argon",
+            "homepage": "https://github.com/creativetimofficial/argon-dashboard",
+            "keywords": [
+                "Argon",
+                "laravel",
+                "preset"
+            ],
+            "time": "2019-09-23T10:02:11+00:00"
         },
         {
             "name": "laravel/framework",

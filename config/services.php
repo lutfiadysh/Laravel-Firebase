@@ -29,5 +29,12 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'firebase' => [
+        'api_key' => 'AIzaSyAgTW5Zq__XezkishVGXVqMHVITAC2Ecwo',
+        'auth_domain' => 'qr-scanner-ee644.firebaseapp.com', 
+        'database_url' => 'https://qr-scanner-ee644.firebaseio.com',
+        'secret' => 'secret',
+        'storage_bucket' => 'qr-scanner-ee644.appspot.com',
+    ],
 
 ];
