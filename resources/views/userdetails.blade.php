@@ -1,17 +1,4 @@
-@extends('layouts.app')
-
-@section('style')
-<style type="text/css">
-.desabled {
-	pointer-events: none;
-}
-</style>
-@endsection
-
-@section('content')
-@include('layouts.navbars.navs.guest')   
-<div class="container">
-    <div class="row">
+@yield('content') 
     	{{-- <div class="col-md-4">
     		<div class="card card-default mt-5">
                 <div class="card-header">
@@ -49,31 +36,22 @@
                 </div>
             </div>
     	</div> --}}
-        <div class="col-md-12">
-            <div class="card card-default mt-5">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <strong>Data yang dikirimkan siswa</strong>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-body table-responsive">
-                    <table class="table table-bordered">
-                        <tr>
-                            <th>Data Siswa</th>
-                            <th width="180" class="text-center">Action</th>
-                        </tr>
-                        <tbody id="tbody">
-                        	
-                        </tbody>	
-                    </table>
-                </div>
+        <div class="card card-default mt-5">
+            <div class="card-header bg-success">
+                <h3 class="text-white">Data SHUN Siswa</h3>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table table-bordered py-30">
+                    <tr>
+                        <th>Data</th>
+                        <th width="180" class="text-center">Aksi</th>
+                    </tr>
+                    <tbody id="tbody">
+                        
+                    </tbody>	
+                </table>
             </div>
         </div>
-    </div>
-</div>
 
 <!-- Delete Model -->
 <form action="" method="POST" class="users-remove-record-model">
@@ -85,7 +63,7 @@
                     <button type="button" class="close remove-data-from-delete-form" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
-                    <h4>You Want You Sure Delete This Record?</h4>
+                    <h4>You Sure Want Delete This Record?</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default waves-effect remove-data-from-delete-form" data-dismiss="modal">Close</button>
@@ -116,7 +94,6 @@
         </div>
     </div>
 </form>
-
 @push('js')
 <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
 <script>
@@ -135,14 +112,20 @@ var lastIndex = 0;
 
 // Get Data
 firebase.database().ref('data/').on('value', function(snapshot) {
+    var $load = $('<div class="loading">Loading...</div>').appendTo('body')
+    ,db = database.ref('data/')
+
+    db.on('value', function () {
+    $load.hide()
+    })
     var value = snapshot.val();
     var htmls = [];
     $.each(value, function(index, value){
     	if(value) {
     		htmls.push('<tr>\
         		<td>'+ value.title +'</td>\
-        		<td><a data-toggle="modal" data-target="#update-modal" class="btn btn-outline-success updateData" data-id="'+index+'">Update</a>\
-        		<a data-toggle="modal" data-target="#remove-modal" class="btn btn-outline-danger removeData" data-id="'+index+'">Delete</a></td>\
+        		<td><a data-toggle="modal" data-target="#update-modal" class="btn btn-outline-success btn-sm updateData" data-id="'+index+'">Update</a>\
+        		<a data-toggle="modal" data-target="#remove-modal" class="btn btn-outline-danger btn-sm removeData" data-id="'+index+'">Delete</a></td>\
         	</tr>');
     	}    	
     	lastIndex = index;
@@ -224,5 +207,5 @@ $('.deleteMatchRecord').on('click', function(){
 $('.remove-data-from-delete-form').click(function() {
 	$('body').find('.users-remove-record-model').find( "input" ).remove();
 });
-</script>    
+</script>
 @endpush
