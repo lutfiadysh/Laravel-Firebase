@@ -43,8 +43,15 @@
             <div class="card-body table-responsive">
                 <table class="table table-bordered py-30">
                     <tr>
-                        <th>Data</th>
-                        <th class="text-center">NIS</th>
+                        <th>NISN</th>
+                        <th class="text-center">TANGGAL</th>
+                        <th class="text-center">Asal Sekolah</th>
+                        <th class="text-center">Nama</th>
+                        <th class="text-center">Tanggal Lahir</th>
+                        <th class="text-center">UN</th>
+                        <th class="text-center">Rombel</th>
+                        <th class="text-center">Rayon</th>
+                        <th>NIS</th>
                     </tr>
                     <tbody id="tbody">
                         
@@ -121,9 +128,18 @@ firebase.database().ref('data/shun').on('value', function(snapshot) {
     var value = snapshot.val();
     var htmls = [];
     $.each(value, function(index, value){
+        var data = value.title + toString();
+        var pisah = data.split('r');
     	if(value) {
     		htmls.push('<tr>\
-        		<td>'+ value.title +'</td>\
+        		<td>'+ pisah[0] +'</td>\
+                <td>'+ pisah[1] +'</td>\
+                <td>'+ pisah[2] +'</td>\
+                <td>'+ pisah[3] +'</td>\
+                <td>'+ pisah[4] +'</td>\
+                <td>'+ pisah[5] +'</td>\
+                <td>'+ value.rombel +'</td>\
+                <td>'+ value.rayon +'</td>\
                 <td>'+ value.name +'</td>\
         	</tr>');
     	}    	
