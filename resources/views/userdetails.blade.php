@@ -38,21 +38,31 @@
     	</div> --}}
         <div class="card card-default mt-5">
             <div class="card-header bg-success">
-                <h3 class="text-white">Data SHUN Siswa</h3>
+                <h3 class="text-white float-left">Data SHUN Siswa</h3>
+                <div class="form-group float-right col-4 mb--4">
+                    <div class="input-group input-group-alternative mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+                        </div>
+                        <input class="form-control form-control-alternative" id="myInput" onkeyup="myFunction()" placeholder="Cari" type="text">
+                    </div>
+                </div>
             </div>
             <div class="card-body table-responsive">
-                <table class="table table-bordered py-30">
-                    <tr>
-                        <th>NISN</th>
-                        <th class="text-center">TANGGAL</th>
-                        <th class="text-center">Asal Sekolah</th>
-                        <th class="text-center">Nama</th>
-                        <th class="text-center">Tanggal Lahir</th>
-                        <th class="text-center">UN</th>
-                        <th class="text-center">Rombel</th>
-                        <th class="text-center">Rayon</th>
-                        <th>NIS</th>
-                    </tr>
+                <table class="table table-bordered py-30 table-hover" id="myTable">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>NISN</th>
+                            <th class="text-center">TANGGAL</th>
+                            <th class="text-center">Asal Sekolah</th>
+                            <th class="text-center">Nama</th>
+                            <th class="text-center">Tanggal Lahir</th>
+                            <th class="text-center">UN</th>
+                            <th class="text-center">Rombel</th>
+                            <th class="text-center">Rayon</th>
+                            <th>NIS</th>
+                        </tr>
+                    </thead>
                     <tbody id="tbody">
                         
                     </tbody>	
@@ -130,6 +140,7 @@ firebase.database().ref('data/shun').on('value', function(snapshot) {
     $.each(value, function(index, value){
         var data = value.title + toString();
         var pisah = data.split('r');
+
     	if(value) {
     		htmls.push('<tr>\
         		<td>'+ pisah[0] +'</td>\
@@ -223,4 +234,24 @@ $('.remove-data-from-delete-form').click(function() {
 	$('body').find('.users-remove-record-model').find( "input" ).remove();
 });
 </script>
+<script>
+    function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+    </script>
 @endpush
