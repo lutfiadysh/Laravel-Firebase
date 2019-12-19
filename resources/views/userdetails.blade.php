@@ -44,7 +44,7 @@
                 <table class="table table-bordered py-30">
                     <tr>
                         <th>Data</th>
-                        <th width="180" class="text-center">Aksi</th>
+                        <th class="text-center">NIS</th>
                     </tr>
                     <tbody id="tbody">
                         
@@ -111,7 +111,7 @@ var database = firebase.database();
 var lastIndex = 0;
 
 // Get Data
-firebase.database().ref('data/').on('value', function(snapshot) {
+firebase.database().ref('data/shun').on('value', function(snapshot) {
     var $load = $('<div class="loading">Loading...</div>').appendTo('body')
     ,db = database.ref('data/')
 
@@ -124,8 +124,7 @@ firebase.database().ref('data/').on('value', function(snapshot) {
     	if(value) {
     		htmls.push('<tr>\
         		<td>'+ value.title +'</td>\
-        		<td><a data-toggle="modal" data-target="#update-modal" class="btn btn-outline-success btn-sm updateData" data-id="'+index+'">Update</a>\
-        		<a data-toggle="modal" data-target="#remove-modal" class="btn btn-outline-danger btn-sm removeData" data-id="'+index+'">Delete</a></td>\
+                <td>'+ value.name +'</td>\
         	</tr>');
     	}    	
     	lastIndex = index;
