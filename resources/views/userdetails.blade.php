@@ -57,7 +57,10 @@
                             <th class="text-center">Asal Sekolah</th>
                             <th class="text-center">Nama</th>
                             <th class="text-center">Tanggal Lahir</th>
-                            <th class="text-center">UN</th>
+                            <th class="text-center">B Indo</th>
+                            <th class="text-center">B Inggris</th>
+                            <th class="text-center">Matematika</th>
+                            <th class="text-center">IPA</th>
                             <th class="text-center">Rombel</th>
                             <th class="text-center">Rayon</th>
                             <th>NIS</th>
@@ -139,7 +142,13 @@ firebase.database().ref('data/shun').on('value', function(snapshot) {
     var htmls = [];
     $.each(value, function(index, value){
         var data = value.title + toString();
-        var pisah = data.split('r');
+        var pisah = data.split('\\' + 'r');
+        var nilai = pisah[5] + toString();
+        var seperate = nilai.split('=');
+        var score = seperate + toString();
+        var scoree = score.split('-');
+        var datanilai = scoree.toString();
+        var nilaii = datanilai.split(',');
 
     	if(value) {
     		htmls.push('<tr>\
@@ -148,7 +157,10 @@ firebase.database().ref('data/shun').on('value', function(snapshot) {
                 <td>'+ pisah[2] +'</td>\
                 <td>'+ pisah[3] +'</td>\
                 <td>'+ pisah[4] +'</td>\
-                <td>'+ pisah[5] +'</td>\
+                <td>'+ nilaii[1] +'</td>\
+                <td>'+ nilaii[2] +'</td>\
+                <td>'+ nilaii[3] +'</td>\
+                <td>'+ nilaii[4] +'</td>\
                 <td>'+ value.rombel +'</td>\
                 <td>'+ value.rayon +'</td>\
                 <td>'+ value.name +'</td>\
