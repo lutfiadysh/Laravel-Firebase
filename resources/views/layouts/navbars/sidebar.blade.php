@@ -56,7 +56,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/data">
+                    <a class="nav-link" href="{{route('data')}}">
                         <i class="fab fa-laravel" style="color: #f4645f;"></i>{{ __('Data') }}
                     </a>
                 </li>
